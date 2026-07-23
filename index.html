@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aitor Bazo | Applied Data Scientist &amp; AI Automation Builder</title>
+<meta name="description" content="Aitor Bazo: Applied Data Scientist &amp; AI Automation Builder. Remote-first, PyPI-shipped, AI-native since 2012.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+  :root{
+    --page:      #1c1c1b;
+    --paper:     #232321;
+    --paper-2:   #323232;
+    --ink:       #f3efe6;
+    --ink-2:     #c2bcae;
+    --mute:      #8b867a;
+    --hair:      #3a3934;
+    --accent:    #f3efe6;
+    --accent-hi: #ffffff;
+    --accent-dim:rgba(243,239,230,0.16);
+    --good:      #4caf50;
+    --serif: 'Manrope', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --sans:  'Manrope', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --mono:  'Manrope', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--paper); color:var(--ink-2); font-family:var(--sans);
+    font-weight:300; line-height:1.68; font-size:15px;
+  }
+  ::selection{ background:var(--accent-dim); color:var(--ink); }
+  a{ color:var(--accent); text-decoration:none; }
+
+  .sheet{ max-width:1320px; margin:0 auto; background:var(--paper); }
+
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ── header ── */
+  .hd{ padding:0 64px 0; }
+  .hd-banner{
+    width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); margin-bottom:20px;
+    background-image: linear-gradient(180deg, rgba(18,17,14,.6) 0%, rgba(18,17,14,.68) 45%, rgba(18,17,14,.86) 100%), url('assets/cover.png');
+    background-size:cover; background-position:center;
+  }
+  .hd-banner-inner{ max-width:1320px; margin:0 auto; padding:92px 64px 26px; }
+  .hd-grid{ display:flex; align-items:flex-end; justify-content:flex-start; gap:28px; text-align:left; }
+  .hd-name{
+    font-family:var(--serif); font-optical-sizing:auto; font-weight:600; font-size:clamp(2.55rem,4.4vw,3.5rem);
+    color:var(--ink); letter-spacing:-0.01em; line-height:1.1; margin-bottom:10px;
+  }
+  .hd-eyebrow{
+    font-family:var(--serif); font-weight:600; font-size:clamp(1.95rem,3.5vw,2.55rem);
+    color:var(--ink); letter-spacing:-0.01em; line-height:1.15;
+  }
+  .hd-skills{
+    font-family:var(--mono); font-size:1.02rem; letter-spacing:.02em; color:var(--ink-2);
+    text-align:center; margin:28px 0 20px;
+  }
+  .hd-deck{
+    font-size:1.04rem; color:var(--ink-2); line-height:1.8; text-align:justify; margin-bottom:24px;
+  }
+
+  /* ── avatar (static, no motion) ── */
+  .hd-side{ display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .avatar-wrap{ position:relative; width:165px; height:165px; }
+  .avatar{
+    position:absolute; inset:0; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .avatar img{ width:100%; height:100%; object-fit:cover; }
+  .avatar svg{ width:60%; height:60%; }
+
+  /* ── section ── */
+  .section{ padding:48px 64px 0; }
+  .hd + .section{ padding-top:18px; }
+  .section-head{
+    font-family:var(--serif); font-weight:600; font-size:1.27rem; color:var(--ink); letter-spacing:-0.01em;
+    margin-bottom:22px; padding-bottom:14px; border-bottom:1px solid var(--hair);
+  }
+  .prose{ max-width:700px; font-size:.93rem; }
+
+  /* ── skills as tiles ── */
+  .skill-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+  .skill-tile{
+    display:flex; flex-direction:column; gap:6px;
+    border:1px solid var(--hair); border-radius:6px; padding:9px 13px 10px;
+  }
+  .skill-tile-top{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+  .skill-tile-name{ font-size:.72rem; color:var(--ink-2); font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .skill-tile-val{ font-family:var(--serif); font-weight:700; font-size:.86rem; color:var(--ink); line-height:1; white-space:nowrap; flex-shrink:0; }
+  .skill-tile-val small{ font-family:var(--sans); font-size:.64rem; color:var(--mute); font-weight:400; }
+  .skill-track{ height:3px; background:var(--page); border-radius:2px; overflow:hidden; }
+  .skill-fill{ height:100%; width:0; border-radius:2px; background:var(--ink); transition:width 1s cubic-bezier(.16,1,.3,1); }
+
+  /* ── project cards: square image, name on a subtle hover/touch overlay ── */
+  .proj-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .proj-card{
+    display:block; position:relative; overflow:hidden; background:var(--paper-2); aspect-ratio:1/1;
+  }
+  .proj-media{ position:absolute; inset:0; }
+  .proj-media svg, .proj-media img, .proj-media video{ width:100%; height:100%; display:block; object-fit:cover; }
+  .proj-overlay{
+    position:absolute; left:0; right:0; bottom:0; padding:14px 16px 12px;
+    display:flex; flex-direction:column; gap:3px;
+    background:linear-gradient(180deg, rgba(18,17,14,0) 0%, rgba(18,17,14,.5) 38%, rgba(18,17,14,.92) 100%);
+    opacity:0; transform:translateY(4px); transition:opacity .3s ease, transform .3s ease; pointer-events:none;
+  }
+  .proj-card:hover .proj-overlay, .proj-card:focus-within .proj-overlay{ opacity:1; transform:translateY(0); }
+  .proj-overlay-name{ font-family:var(--serif); font-weight:600; font-size:.93rem; color:var(--ink); }
+  .proj-overlay-desc{
+    font-size:.73rem; font-weight:500; color:var(--ink-2); line-height:1.4;
+    display:-webkit-box; -webkit-line-clamp:2; line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .proj-overlay-tags{ font-family:var(--mono); font-weight:500; font-size:.62rem; letter-spacing:.03em; color:var(--mute); margin-top:1px; }
+  @media (hover:none){
+    .proj-overlay{ opacity:1; transform:translateY(0); }
+  }
+  .ink-line{ stroke:#cfd6dd; }
+  .ink-fill{ fill:#cfd6dd; }
+  .ink-dim{ stroke:#6b6558; }
+
+  /* ── experience ── */
+  .exp-item{ display:grid; grid-template-columns:160px 1fr; gap:20px; padding:18px 0; max-width:820px; }
+  .exp-item:first-child{ padding-top:0; }
+  .exp-period{ font-family:var(--mono); font-size:.76rem; color:var(--accent); padding-top:2px; }
+  .exp-role{ font-weight:600; color:var(--ink); font-size:.93rem; margin-bottom:7px; }
+  .exp-body{ font-size:.97rem; color:var(--ink-2); line-height:1.75; }
+
+  /* ── education ── */
+  .edu-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; }
+  .edu-item{ padding:0 22px 0 0; }
+  .edu-item:not(:first-child){ padding-left:22px; }
+  .edu-deg{ font-family:var(--serif); font-weight:600; font-size:.95rem; color:var(--ink); margin-bottom:4px; }
+  .edu-inst{ font-family:var(--mono); font-size:.91rem; color:var(--mute); margin-bottom:9px; }
+  .edu-note{ font-size:.94rem; color:var(--ink-2); line-height:1.65; }
+
+  /* ── footer ── */
+  .foot{ margin:44px 64px 0; padding:26px 0 46px; border-top:1px solid var(--hair); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .foot-text{ font-family:var(--mono); font-size:.88rem; letter-spacing:.04em; font-variant:small-caps; color:var(--ink); }
+  .foot-links{ display:flex; gap:12px; }
+  .foot-links a{
+    display:flex; align-items:center; justify-content:center;
+    width:40px; height:40px; border-radius:50%; flex-shrink:0;
+    background:var(--paper-2); color:var(--ink);
+    transition:background .2s ease, color .2s ease, transform .2s ease;
+  }
+  .foot-links a svg{ width:18px; height:18px; }
+  .foot-links a:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px); }
+
+  @media (max-width:980px){
+    .proj-grid{ grid-template-columns:repeat(2,1fr); }
+    .skill-grid{ grid-template-columns:repeat(3,1fr); }
+  }
+  @media (max-width:640px){
+    .hd{ padding:0 22px 0; }
+    .hd-banner-inner{ padding:32px 22px 24px; }
+    .section{ padding-left:22px; padding-right:22px; }
+    .foot{ margin-left:22px; margin-right:22px; }
+    .hd-grid{ flex-direction:column; gap:16px; }
+    .avatar-wrap{ width:125px; height:125px; }
+    .hd-deck{ max-width:none; }
+    .proj-grid{ grid-template-columns:1fr; }
+    .skill-grid{ grid-template-columns:repeat(2,1fr); }
+    .exp-item{ grid-template-columns:1fr; gap:4px; }
+    .edu-grid{ grid-template-columns:1fr; }
+    .edu-item{ padding:0 0 18px !important; border-bottom:1px solid var(--hair); margin-bottom:18px; }
+    .edu-item:last-child{ border-bottom:none; margin-bottom:0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <header class="hd reveal in">
+    <div class="hd-banner">
+      <div class="hd-banner-inner">
+        <div class="hd-grid">
+          <div class="hd-side">
+            <div class="avatar-wrap">
+              <div class="avatar">
+                <img src="assets/profile.jpg" alt="Aitor Bazo">
+              </div>
+            </div>
+          </div>
+          <div>
+            <h1 class="hd-name">Aitor Bazo</h1>
+            <div class="hd-eyebrow">Data Scientist / Analyst / Developer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hd-skills">Python  •  Pandas  •  Google Sheets  •  Excel  •  SQL  •  Tableau  •  Jupyter  •  Keras  •  Git  •  Workflow Automation</div>
+    <p class="hd-deck">
+      I specialize in data analytics, with a strong focus on uncovering actionable insights from complex datasets. My expertise includes programming, data visualization, and the use of statistical methods to inform strategic decision-making. I have worked on several projects across various industries. My work involves cleaning and analyzing large datasets, data wrangling, visualization, and machine learning, to deliver actionable insights.
+    </p>
+  </header>
+
+  <section class="section reveal">
+    <div class="section-head">Projects</div>
+    <div class="proj-grid">
+
+      <a class="proj-card" href="https://github.com/aitor1717/pau_pau" target="_blank" rel="noopener">
+        <div class="proj-media"><img src="assets/pau-pau.png" alt="pau pau"></div>
+        <div class="proj-overlay">
+          <div class="proj-overlay-name">pau pau</div>
+          <p class="proj-overlay-desc">Self-building CLI agent that writes and improves its own Python tools.</p>
+          <div class="proj-overlay-tags">Python · Jupyter</div>
+        </div>
+      </a>
+
+      <a class="proj-card" href="https://aitor1717.github.io/havoc-monkey/" target="_blank" rel="noopener">
+        <div class="proj-media"><video src="assets/havoc-monkey.webm" autoplay loop muted playsinline aria-label="havoc-monkey preview"></video></div>
+        <div class="proj-overlay">
+          <div class="proj-overlay-name">havoc-monkey</div>
+          <p class="proj-overlay-desc">Deliberately breaks data pipelines in controlled ways to catch failures before they reach production.</p>
+          <div class="proj-overlay-tags">Python · PyPI</div>
+        </div>
+      </a>
+
+      <div class="proj-card" tabindex="0">
+        <div class="proj-media"><img src="assets/fin-dash.png" alt="Financial portfolio dashboard preview"></div>
+        <div class="proj-overlay">
+          <div class="proj-overlay-name">Elisa</div>
+          <p class="proj-overlay-desc">A self-hosted music library and player.</p>
+          <div class="proj-overlay-tags">Python · Self-hosted</div>
+        </div>
+      </div>
+
+      <div class="proj-card" tabindex="0">
+        <div class="proj-media"><img src="assets/fao-yields.png" alt="FAO Yields dashboard preview"></div>
+        <div class="proj-overlay">
+          <div class="proj-overlay-name">FAO Yields</div>
+          <p class="proj-overlay-desc">What does each country have with what it's got in an interactive dashboard.</p>
+          <div class="proj-overlay-tags">Tableau · FAO data</div>
+        </div>
+      </div>
+
+      <a class="proj-card" href="https://github.com/aitor1717/stripify" target="_blank" rel="noopener">
+        <div class="proj-media"><img src="assets/stripify-square.png" alt="stripify preview"></div>
+        <div class="proj-overlay">
+          <div class="proj-overlay-name">stripify</div>
+          <p class="proj-overlay-desc">Analyzes your Spotify listening history and uses GPT to recommend what to play next.</p>
+          <div class="proj-overlay-tags">Python · GPT</div>
+        </div>
+      </a>
+
+      <div class="proj-card" tabindex="0">
+        <div class="proj-media"><img src="assets/res-domus.png" alt="Res Domus dashboard preview"></div>
+        <div class="proj-overlay">
+          <div class="proj-overlay-name">Res Domus</div>
+          <p class="proj-overlay-desc">Household budget and pantry tracker with a chat-driven grocery-list assistant.</p>
+          <div class="proj-overlay-tags">Python · Automation</div>
+        </div>
+      </div>
+
+      <a class="proj-card" href="https://github.com/aitor1717/canary-ml" target="_blank" rel="noopener">
+        <div class="proj-media"><img src="assets/canary-ml.png" alt="canary-ml dashboard preview"></div>
+        <div class="proj-overlay">
+          <div class="proj-overlay-name">canary-ml</div>
+          <p class="proj-overlay-desc">Watches production ML models for drift and anomalies in real time, no extra infrastructure.</p>
+          <div class="proj-overlay-tags">Python · SciPy</div>
+        </div>
+      </a>
+
+      <div class="proj-card" tabindex="0">
+        <div class="proj-media"><img src="assets/stock-cells.png" alt="Live Stock Charts preview"></div>
+        <div class="proj-overlay">
+          <div class="proj-overlay-name">Live Stock Charts</div>
+          <p class="proj-overlay-desc">Playful old thing. Interactive live charts for NYSE companies.</p>
+          <div class="proj-overlay-tags">Google Sheets · No-code</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-head">Skills</div>
+    <div class="skill-grid">
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Python</div><div class="skill-tile-val">8<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Pandas</div><div class="skill-tile-val">8<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Machine Learning</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Forecasting</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Automation / Scripting</div><div class="skill-tile-val">8<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">LLM Prompting</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Agentic Workflows</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Anomaly Detection</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">NLP</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">SQL</div><div class="skill-tile-val">3<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="30"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">APIs</div><div class="skill-tile-val">4<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="40"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">OOP</div><div class="skill-tile-val">1<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="10"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Excel</div><div class="skill-tile-val">8<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Tableau</div><div class="skill-tile-val">5.5<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="55"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Git</div><div class="skill-tile-val">5.5<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="55"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Linux</div><div class="skill-tile-val">5<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="50"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Docker</div><div class="skill-tile-val">3<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="30"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Cloud</div><div class="skill-tile-val">2.5<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="25"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Deployment</div><div class="skill-tile-val">2.5<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="25"></div></div></div>
+      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Agent Orchestration / MCP</div><div class="skill-tile-val">4<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="40"></div></div></div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-head">Experience</div>
+    <div class="exp-item">
+      <div class="exp-period">2012–ongoing</div>
+      <div>
+        <div class="exp-role">Independent Data Scientist &amp; Analyst</div>
+        <div class="exp-body">Applied ML and statistical analysis in a self-directed practice involving real-time data processing and Keras-based decision systems. Built Python/Pandas/NumPy pipelines automating &gt;4M-row datasets, with dashboards for model evaluation and feature engineering. Layered in LLMs and NLP as those tools matured.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-period">2023–2024</div>
+      <div>
+        <div class="exp-role">Operations Analyst, Multilingual</div>
+        <div class="exp-body">Automated Google Sheets pipelines, halving manual reporting time. Monitored KPIs and reported to stakeholders. Coordinated remote collaboration across three continents via Slack, Trello, and Zoom.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-head">Education</div>
+    <div class="edu-grid">
+      <div class="edu-item">
+        <div class="edu-deg">B.Arch</div>
+        <div class="edu-inst">Universidad Peruana de Ciencias Aplicadas</div>
+        <div class="edu-note">Structured systems thinking, spatial/logical reasoning, framework-first problem decomposition.</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-deg">Advanced Data Analytics Certificate</div>
+        <div class="edu-inst">Google</div>
+        <div class="edu-note">Analytics methodology, statistical analysis, Python workflows, applied ML.</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-deg">Certificate of Advanced English (C1)</div>
+        <div class="edu-inst">University of Cambridge</div>
+        <div class="edu-note">Full professional fluency for international remote teams.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span class="foot-text">aitor bazo</span>
+    <div class="foot-links">
+      <a href="https://drive.google.com/file/d/14FWrXFAosZzH212eEi0K2DrwhzhhTmra/view" target="_blank" rel="noopener" aria-label="Resume" title="Resume">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      </a>
+      <a href="mailto:aitor1717@gmail.com" aria-label="Email" title="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/aitorbazo" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="https://github.com/aitor1717" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.6.24 2.77.12 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .3.21.66.8.55A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5z"/></svg>
+      </a>
+      <a href="https://pypi.org/project/canary-ml/" target="_blank" rel="noopener" aria-label="PyPI" title="PyPI">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.reveal').forEach(el=>{
+    const io = new IntersectionObserver(es=>{
+      es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.12});
+    io.observe(el);
+  });
+
+  document.querySelectorAll('.skill-fill').forEach(b=>{
+    const w = b.dataset.w + '%';
+    const io = new IntersectionObserver(es=>{
+      es.forEach(e=>{ if(e.isIntersecting){ b.style.width = w; io.unobserve(b); } });
+    }, {threshold:.2});
+    io.observe(b);
+  });
+</script>
+
+</body>
+</html>
