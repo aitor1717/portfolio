@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aitor Bazo | Applied Data Scientist &amp; AI Automation Builder</title>
 <meta name="description" content="Aitor Bazo: Applied Data Scientist &amp; AI Automation Builder. Remote-first, PyPI-shipped, AI-native since 2012.">
+<meta name="theme-color" content="#232321">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
-
   :root{
     --page:      #1c1c1b;
     --paper:     #232321;
@@ -61,7 +63,7 @@
     text-align:center; margin:28px 0 20px;
   }
   .hd-deck{
-    font-size:1.04rem; color:var(--ink-2); line-height:1.8; text-align:justify; margin-bottom:24px;
+    font-size:1.04rem; color:var(--ink-2); line-height:1.8; margin-bottom:24px;
   }
 
   /* ── avatar (static, no motion) ── */
@@ -83,18 +85,12 @@
   }
   .prose{ max-width:700px; font-size:.93rem; }
 
-  /* ── skills as tiles ── */
-  .skill-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
-  .skill-tile{
-    display:flex; flex-direction:column; gap:6px;
-    border:1px solid var(--hair); border-radius:6px; padding:9px 13px 10px;
+  /* ── skills as flat tags ── */
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .skill-tag{
+    font-family:var(--mono); font-size:.82rem; letter-spacing:.02em; color:var(--ink-2);
+    border:1px solid var(--hair); border-radius:6px; padding:8px 14px;
   }
-  .skill-tile-top{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
-  .skill-tile-name{ font-size:.72rem; color:var(--ink-2); font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .skill-tile-val{ font-family:var(--serif); font-weight:700; font-size:.86rem; color:var(--ink); line-height:1; white-space:nowrap; flex-shrink:0; }
-  .skill-tile-val small{ font-family:var(--sans); font-size:.64rem; color:var(--mute); font-weight:400; }
-  .skill-track{ height:3px; background:var(--page); border-radius:2px; overflow:hidden; }
-  .skill-fill{ height:100%; width:0; border-radius:2px; background:var(--ink); transition:width 1s cubic-bezier(.16,1,.3,1); }
 
   /* ── project cards: square image, name on a subtle hover/touch overlay ── */
   .proj-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
@@ -139,21 +135,19 @@
   .edu-note{ font-size:.94rem; color:var(--ink-2); line-height:1.65; }
 
   /* ── footer ── */
-  .foot{ margin:44px 64px 0; padding:26px 0 46px; border-top:1px solid var(--hair); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
-  .foot-text{ font-family:var(--mono); font-size:.88rem; letter-spacing:.04em; font-variant:small-caps; color:var(--ink); }
+  .foot{ margin:0 64px 0; padding:26px 0 46px; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:12px; }
   .foot-links{ display:flex; gap:12px; }
   .foot-links a{
     display:flex; align-items:center; justify-content:center;
-    width:40px; height:40px; border-radius:50%; flex-shrink:0;
+    width:44px; height:44px; border-radius:50%; flex-shrink:0;
     background:var(--paper-2); color:var(--ink);
     transition:background .2s ease, color .2s ease, transform .2s ease;
   }
-  .foot-links a svg{ width:18px; height:18px; }
+  .foot-links a svg{ width:19px; height:19px; }
   .foot-links a:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px); }
 
   @media (max-width:980px){
     .proj-grid{ grid-template-columns:repeat(2,1fr); }
-    .skill-grid{ grid-template-columns:repeat(3,1fr); }
   }
   @media (max-width:640px){
     .hd{ padding:0 22px 0; }
@@ -164,7 +158,6 @@
     .avatar-wrap{ width:125px; height:125px; }
     .hd-deck{ max-width:none; }
     .proj-grid{ grid-template-columns:1fr; }
-    .skill-grid{ grid-template-columns:repeat(2,1fr); }
     .exp-item{ grid-template-columns:1fr; gap:4px; }
     .edu-grid{ grid-template-columns:1fr; }
     .edu-item{ padding:0 0 18px !important; border-bottom:1px solid var(--hair); margin-bottom:18px; }
@@ -194,7 +187,7 @@
         </div>
       </div>
     </div>
-    <div class="hd-skills">Python  •  Pandas  •  Google Sheets  •  Excel  •  SQL  •  Tableau  •  Jupyter  •  Keras  •  Git  •  Workflow Automation</div>
+    <div class="hd-skills">Python  •  Pandas  •  Machine Learning  •  Data Visualization  •  Agentic Workflows  •  LLM Prompting</div>
     <p class="hd-deck">
       I specialize in data analytics, with a strong focus on uncovering actionable insights from complex datasets. My expertise includes programming, data visualization, and the use of statistical methods to inform strategic decision-making. I have worked on several projects across various industries. My work involves cleaning and analyzing large datasets, data wrangling, visualization, and machine learning, to deliver actionable insights.
     </p>
@@ -205,7 +198,7 @@
     <div class="proj-grid">
 
       <a class="proj-card" href="https://github.com/aitor1717/pau_pau" target="_blank" rel="noopener">
-        <div class="proj-media"><img src="assets/pau-pau.png" alt="pau pau"></div>
+        <div class="proj-media"><img src="assets/pau-pau.png" alt="pau pau" loading="lazy" decoding="async"></div>
         <div class="proj-overlay">
           <div class="proj-overlay-name">pau pau</div>
           <p class="proj-overlay-desc">Self-building CLI agent that writes and improves its own Python tools.</p>
@@ -223,16 +216,16 @@
       </a>
 
       <div class="proj-card" tabindex="0">
-        <div class="proj-media"><img src="assets/fin-dash.png" alt="Financial portfolio dashboard preview"></div>
+        <div class="proj-media"><img src="assets/fin-dash.png" alt="Fin Dashboard preview" loading="lazy" decoding="async"></div>
         <div class="proj-overlay">
-          <div class="proj-overlay-name">Elisa</div>
-          <p class="proj-overlay-desc">A self-hosted music library and player.</p>
-          <div class="proj-overlay-tags">Python · Self-hosted</div>
+          <div class="proj-overlay-name">Fin Dashboard</div>
+          <p class="proj-overlay-desc">A dashboard with cutting-edge metrics, kept simple.</p>
+          <div class="proj-overlay-tags">Python · Finance</div>
         </div>
       </div>
 
       <div class="proj-card" tabindex="0">
-        <div class="proj-media"><img src="assets/fao-yields.png" alt="FAO Yields dashboard preview"></div>
+        <div class="proj-media"><img src="assets/fao-yields.png" alt="FAO Yields dashboard preview" loading="lazy" decoding="async"></div>
         <div class="proj-overlay">
           <div class="proj-overlay-name">FAO Yields</div>
           <p class="proj-overlay-desc">What does each country have with what it's got in an interactive dashboard.</p>
@@ -240,8 +233,17 @@
         </div>
       </div>
 
+      <a class="proj-card" href="https://aitor1717.github.io/canary-ml/" target="_blank" rel="noopener">
+        <div class="proj-media"><img src="assets/canary-ml.png" alt="canary-ml dashboard preview" loading="lazy" decoding="async"></div>
+        <div class="proj-overlay">
+          <div class="proj-overlay-name">canary-ml</div>
+          <p class="proj-overlay-desc">Watches production ML models for drift and anomalies in real time, no extra infrastructure.</p>
+          <div class="proj-overlay-tags">Python · SciPy</div>
+        </div>
+      </a>
+
       <a class="proj-card" href="https://github.com/aitor1717/stripify" target="_blank" rel="noopener">
-        <div class="proj-media"><img src="assets/stripify-square.png" alt="stripify preview"></div>
+        <div class="proj-media"><img src="assets/stripify-square.png" alt="stripify preview" loading="lazy" decoding="async"></div>
         <div class="proj-overlay">
           <div class="proj-overlay-name">stripify</div>
           <p class="proj-overlay-desc">Analyzes your Spotify listening history and uses GPT to recommend what to play next.</p>
@@ -250,7 +252,7 @@
       </a>
 
       <div class="proj-card" tabindex="0">
-        <div class="proj-media"><img src="assets/res-domus.png" alt="Res Domus dashboard preview"></div>
+        <div class="proj-media"><img src="assets/res-domus.png" alt="Res Domus dashboard preview" loading="lazy" decoding="async"></div>
         <div class="proj-overlay">
           <div class="proj-overlay-name">Res Domus</div>
           <p class="proj-overlay-desc">Household budget and pantry tracker with a chat-driven grocery-list assistant.</p>
@@ -258,50 +260,44 @@
         </div>
       </div>
 
-      <a class="proj-card" href="https://github.com/aitor1717/canary-ml" target="_blank" rel="noopener">
-        <div class="proj-media"><img src="assets/canary-ml.png" alt="canary-ml dashboard preview"></div>
-        <div class="proj-overlay">
-          <div class="proj-overlay-name">canary-ml</div>
-          <p class="proj-overlay-desc">Watches production ML models for drift and anomalies in real time, no extra infrastructure.</p>
-          <div class="proj-overlay-tags">Python · SciPy</div>
-        </div>
-      </a>
-
-      <div class="proj-card" tabindex="0">
-        <div class="proj-media"><img src="assets/stock-cells.png" alt="Live Stock Charts preview"></div>
+      <a class="proj-card" href="https://docs.google.com/spreadsheets/d/1QSbIZITSPb49GZZVw22261SxitY46cyJjK2HI1n176s/" target="_blank" rel="noopener">
+        <div class="proj-media"><img src="assets/stock-cells.png" alt="Live Stock Charts preview" loading="lazy" decoding="async"></div>
         <div class="proj-overlay">
           <div class="proj-overlay-name">Live Stock Charts</div>
           <p class="proj-overlay-desc">Playful old thing. Interactive live charts for NYSE companies.</p>
           <div class="proj-overlay-tags">Google Sheets · No-code</div>
         </div>
-      </div>
+      </a>
 
     </div>
   </section>
 
   <section class="section reveal">
     <div class="section-head">Skills</div>
-    <div class="skill-grid">
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Python</div><div class="skill-tile-val">8<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Pandas</div><div class="skill-tile-val">8<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Machine Learning</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Forecasting</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Automation / Scripting</div><div class="skill-tile-val">8<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">LLM Prompting</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Agentic Workflows</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Anomaly Detection</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">NLP</div><div class="skill-tile-val">7<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="70"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">SQL</div><div class="skill-tile-val">3<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="30"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">APIs</div><div class="skill-tile-val">4<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="40"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">OOP</div><div class="skill-tile-val">1<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="10"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Excel</div><div class="skill-tile-val">8<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="80"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Tableau</div><div class="skill-tile-val">5.5<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="55"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Git</div><div class="skill-tile-val">5.5<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="55"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Linux</div><div class="skill-tile-val">5<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="50"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Docker</div><div class="skill-tile-val">3<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="30"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Cloud</div><div class="skill-tile-val">2.5<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="25"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Deployment</div><div class="skill-tile-val">2.5<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="25"></div></div></div>
-      <div class="skill-tile"><div class="skill-tile-top"><div class="skill-tile-name">Agent Orchestration / MCP</div><div class="skill-tile-val">4<small>/10</small></div></div><div class="skill-track"><div class="skill-fill" data-w="40"></div></div></div>
+    <div class="skill-tags">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Pandas</span>
+      <span class="skill-tag">NumPy</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">Machine Learning</span>
+      <span class="skill-tag">Keras</span>
+      <span class="skill-tag">Forecasting</span>
+      <span class="skill-tag">Statistics</span>
+      <span class="skill-tag">Anomaly Detection</span>
+      <span class="skill-tag">NLP</span>
+      <span class="skill-tag">LLM Prompting</span>
+      <span class="skill-tag">Agentic Workflows</span>
+      <span class="skill-tag">Agent Orchestration / MCP</span>
+      <span class="skill-tag">Automation / Scripting</span>
+      <span class="skill-tag">APIs</span>
+      <span class="skill-tag">Data Visualization</span>
+      <span class="skill-tag">Tableau</span>
+      <span class="skill-tag">Excel</span>
+      <span class="skill-tag">Google Sheets</span>
+      <span class="skill-tag">Jupyter</span>
+      <span class="skill-tag">Git</span>
+      <span class="skill-tag">Linux</span>
+      <span class="skill-tag">OOP</span>
     </div>
   </section>
 
@@ -345,9 +341,8 @@
   </section>
 
   <div class="foot">
-    <span class="foot-text">aitor bazo</span>
     <div class="foot-links">
-      <a href="https://drive.google.com/file/d/14FWrXFAosZzH212eEi0K2DrwhzhhTmra/view" target="_blank" rel="noopener" aria-label="Resume" title="Resume">
+      <a href="https://aitor1717.github.io/resume/resume.html" target="_blank" rel="noopener" aria-label="Resume" title="Resume">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
       </a>
       <a href="mailto:aitor1717@gmail.com" aria-label="Email" title="Email">
@@ -373,14 +368,6 @@
       es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
     }, {threshold:.12});
     io.observe(el);
-  });
-
-  document.querySelectorAll('.skill-fill').forEach(b=>{
-    const w = b.dataset.w + '%';
-    const io = new IntersectionObserver(es=>{
-      es.forEach(e=>{ if(e.isIntersecting){ b.style.width = w; io.unobserve(b); } });
-    }, {threshold:.2});
-    io.observe(b);
   });
 </script>
 
